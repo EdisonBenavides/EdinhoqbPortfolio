@@ -1,0 +1,29 @@
+---
+import type { Project } from '../data/projects';
+interface Props { project: Project; index: number; }
+const { project, index } = Astro.props;
+---
+<article class="project-card">
+  <a class= project-cover} href= {`/proyectos/${project.slug}`} aria-label= {`Ver análisis técnico de ${project.title}`}>
+    <img src={project.cover} alt={`Captura representativa de ${project.title}`} loading={index === 0 ? 'eager' : 'lazy'} decoding="async">
+  </a>
+  <div class="project-topline">
+    <span>0{index + 1}</span>
+    <span>{project.type}</span>
+  </div>
+  <h3>{project.title}</h3>
+  <p>{project.summary}</p>
+  <div class="tags" aria-label="Tecnologías utilizadas">
+    {project.stack.map((item) => <span>{item}</span>)}
+  </div>
+  
+  <a class="project-analysis-link" href={`/proyectos/${project.slug}`} aria-label={`Ver análisis técnico completo de ${project.title}`}>
+    Ver análisis técnico →
+  </a>
+
+  <div class="project-links">
+    {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Demo en vivo ↗</a>}
+    {project.github && <a href={project.github} target="_blank" rel="noreferrer">GitHub ↗</a>}
+    {!project.demo && !project.github && <span class="muted">Enlace pendiente de actualizar</span>}
+  </div>
+</article>

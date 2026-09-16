@@ -1,0 +1,341 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CopyEmail from '../components/CopyEmail.astro';
+import ProjectSection from '../components/ProjectSection.astro';
+import { skills } from '../data/skills';
+import { experience } from '../data/experience';
+
+const email = 'anbe2003@hotmail.com';
+const github = 'https://github.com/EdisonBenavides';
+const gitlab = 'https://gitlab.com/EdisonBenavides';
+const linkedin = 'http://www.linkedin.com/in/edison-benavides-baab33305';
+const cv = '/cv/EDISON_BENAVIDES_CV_SW.pdf';
+
+const siteUrl = 'https://tu-dominio.com';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Edinho',
+  jobTitle: 'Software Developer',
+  url: siteUrl,
+  sameAs: [github, linkedin],
+  knowsAbout: [
+    'Java',
+    'Spring Boot',
+    'REST APIs',
+    'PostgreSQL',
+    'JavaScript',
+    'Docker',
+    'Web Development'
+  ]
+};
+---
+
+<Layout
+  title="EdinhoQB — Software Developer"
+  description="Portfolio de Edison Benavides, Software Developer enfocado en Java, Spring Boot, APIs REST, bases de datos y desarrollo web."
+>
+  <div id="top"></div>
+
+  <Header />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+
+        <h1 id="hero-title">
+          ¡Hola! 👋
+        </h1>
+
+        <h1 id="hero-title">
+          Soy <span class="accent">Edison Benavides.</span>
+        </h1>
+
+        <p class="hero-title">
+          Tecnólogo Superior en <span class="accent">Desarrollo de Software</span>
+        </p>
+
+        <CopyEmail />
+
+        <p class="hero-lead">
+          Desarrollo aplicaciones web y APIs REST con enfoque en backend,
+          bases de datos y arquitectura de software.
+        </p>
+
+        <p class="availability">
+          <span aria-hidden="true">●</span>
+          Disponible para oportunidades laborales en desarrollo de software.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href={cv} download>
+            Descargar CV ↓
+          </a>
+
+          <a
+            class="button"
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub ↗
+          </a>
+
+          <a
+            class="button"
+            href={gitlab}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitLab ↗
+          </a>
+
+          <a
+            class="button"
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn ↗
+          </a>
+        </div>
+
+      </div>
+
+      <div class="profile-frame">
+        <img
+          src="/images/FOTO PERFIL LK EB.jpg"
+          alt="Fotografía de perfil de Edinho, Software Developer"
+          width="420"
+          height="420"
+        />
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <ProjectSection />
+
+    <!-- STACK -->
+    <section
+      id="stack"
+      class="section container"
+      aria-labelledby="stack-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">03 / Stack</p>
+
+        <h2 id="stack-title">
+          Tecnologías que puedo defender.
+        </h2>
+
+        <p>
+          Organizadas por área para priorizar profundidad sobre una lista
+          interminable de herramientas.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        {
+          skills.map((group) => (
+            <article class="skill-group">
+              <h3>{group.category}</h3>
+
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section
+      id="experiencia"
+      class="section container"
+      aria-labelledby="experience-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">04 / Trayectoria</p>
+
+        <h2 id="experience-title">
+          Experiencia y formación práctica.
+        </h2>
+      </div>
+
+      <div class="timeline">
+        {
+          experience.map((item) => (
+            <article class="timeline-item">
+              <div
+                class="timeline-marker"
+                aria-hidden="true"
+              ></div>
+
+              <div>
+                <p class="date">{item.date}</p>
+
+                <h3>{item.role}</h3>
+
+                <p class="company">{item.company}</p>
+
+                <ul>
+                  {item.bullets.map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section
+      id="sobre-mi"
+      class="section container about"
+      aria-labelledby="about-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">05 / Sobre mí</p>
+
+        <h2 id="about-title">
+          Entender, Diseñar, Construir y Validar.
+        </h2>
+      </div>
+
+      <div class="about-content">
+        <div>
+          <p>
+            Soy Software Developer con formación en Desarrollo de Software
+            y actualmente estudiante de Administración de Empresas. Mi
+            interés profesional está enfocado en el desarrollo de
+            aplicaciones web, sistemas backend, integración de APIs REST y
+            diseño de bases de datos, con una perspectiva que conecta la parte técnica con la lógica de negocio.
+          </p>
+
+          <p>
+            He construido soluciones reales para instituciones públicas y privadas:
+            un sistema backend en Java y Spring Boot desplegado con Docker en AWS,
+            dashboards de datos en Looker Studio para el sector público
+            y una plataforma e-commerce en WordPress para un emprendimiento local.
+            En cada proyecto también he documentado el sistema y capacitado a los usuarios finales.
+          </p>
+
+          <p>
+            Mi enfoque parte de comprender el problema antes de implementar una solución,
+            priorizando la separación de responsabilidades, el código mantenible y el aprendizaje continuo.
+          </p>
+        </div>
+
+        <ol class="principles">
+          <li>
+            <strong>Entender</strong>
+            <span>
+              Comprender el problema antes de escribir código.
+            </span>
+          </li>
+
+          <li>
+            <strong>Diseñar</strong>
+            <span>
+              Separar responsabilidades y elegir una solución razonable.
+            </span>
+          </li>
+
+          <li>
+            <strong>Construir</strong>
+            <span>
+              Implementar de forma simple, clara y mantenible.
+            </span>
+          </li>
+
+          <li>
+            <strong>Validar</strong>
+            <span>
+              Probar, medir y corregir.
+            </span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section
+      id="contacto"
+      class="section container contact"
+      aria-labelledby="contact-title"
+    >
+      <p class="eyebrow">06 / Contacto</p>
+
+      <h2 id="contact-title">
+        ¿Hablamos de una oportunidad?
+      </h2>
+
+      <p>
+        Estoy interesado en oportunidades como Software Developer,
+        especialmente en equipos donde pueda aportar en desarrollo web,
+        backend, APIs REST, diseño de bases de datos y seguir creciendo como desarrollador de software.
+      </p>
+
+      <div class="contact-actions">
+        <a
+          class="button primary"
+          href={`mailto:${email}`}
+        >
+          Enviar email
+        </a>
+
+        <a
+          class="button"
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub ↗
+        </a>
+
+        <a
+          class="button"
+          href={gitlab}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitLab ↗
+        </a>
+
+        <a
+          class="button"
+          href={linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>Edison Benavides · Software Developer</span>
+
+      <span>
+        © EdinhoQB · {new Date().getFullYear()}
+      </span>
+    </div>
+  </footer>
+
+  <!-- STRUCTURED DATA -->
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(structuredData)}
+  />
+</Layout>

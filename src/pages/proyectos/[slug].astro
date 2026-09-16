@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: {
+      slug: project.slug
+    },
+    props: {
+      project
+    }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout
+  title={`${project.title} | Portafolio`}
+  description={project.summary}
+>
+  <main class="project-detail container">
+
+    <header class="project-detail-header">
+      <a href="/#proyectos" class="back-link">
+        ← Volver a proyectos
+      </a>
+
+      <p class="eyebrow">{project.type}</p>
+
+      <h1>{project.title}</h1>
+
+      <p class="project-period">
+        {project.period}
+      </p>
+
+      <div class="tags" aria-label="Tecnologías utilizadas">
+        {project.stack.map((item) => (
+          <span>{item}</span>
+        ))}
+      </div>
+    </header>
+
+    <figure class="project-detail-cover">
+      <img
+        src={project.cover}
+        alt={`Vista principal de ${project.title}`}
+      />
+    </figure>
+
+    <section class="case-study-section">
+      <p class="eyebrow">01 / Problema</p>
+      <h2>El problema</h2>
+      <p>{project.problem}</p>
+    </section>
+
+    <section class="case-study-section">
+      <p class="eyebrow">02 / Arquitectura</p>
+      <h2>Arquitectura y solución</h2>
+      <p>{project.architecture}</p>
+    </section>
+
+    <section class="case-study-section">
+      <p class="eyebrow">03 / Implementación</p>
+      <h2>Implementación</h2>
+
+      <div class="project-gallery">
+        {project.gallery.map((item) => (
+          <figure class="gallery-item">
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              decoding="async"
+            />
+
+            <figcaption>
+              <strong>{item.title}</strong>
+              <span>{item.description}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="case-study-section">
+      <p class="eyebrow">04 / Decisiones</p>
+      <h2>Decisiones técnicas y trade-offs</h2>
+
+      <ul>
+        {project.decisions.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="case-study-section">
+      <p class="eyebrow">05 / Resultados</p>
+      <h2>Resultados verificables</h2>
+
+      <ul>
+        {project.metrics.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="project-detail-links">
+      {project.demo && (
+        <a
+          href={project.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver demo ↗
+        </a>
+      )}
+
+      {project.github && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver código en GitHub ↗
+        </a>
+      )}
+    </div>
+
+  </main>
+</Layout>
