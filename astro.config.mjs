@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://tu-dominio.com',
+  site: 'https://edinhoqb.vercel.app/',
   output: 'static'
 });
